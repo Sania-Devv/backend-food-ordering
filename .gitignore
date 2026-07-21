@@ -104,3 +104,6 @@ docs/_build/
 # ==========================
 *.manifest
 *.spec
+# Database backup files
+datadump.json
+db.sqlite3
