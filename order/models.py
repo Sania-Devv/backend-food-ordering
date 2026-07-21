@@ -107,7 +107,13 @@ class OrderItem(models.Model):
         return self.price_at_order * self.quantity
 
     def __str__(self):
-        item = self.menu_item.name if self.menu_item else self.deal.name
+        if self.menu_item:
+            item = self.menu_item.name
+        elif self.deal:
+            item = self.deal.name
+        else:
+            item = "Unknown Item"
+ 
         return f"{self.quantity} x {item}"
 
 class OrderStatusHistory(models.Model):

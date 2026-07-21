@@ -30,14 +30,10 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
-
-<<<<<<< Updated upstream
-=======
-# Cors Headers
-CORS_ALLOWED_ORIGINS = [
-   "http://localhost:5173"
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
 ]
->>>>>>> Stashed changes
+
 
 
 # Application definition
@@ -54,8 +50,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'user',
     'restaurants',
-    'order',
-    'corsheaders'
+    'order'
 ]
 
 MIDDLEWARE = [

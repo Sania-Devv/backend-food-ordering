@@ -91,15 +91,26 @@ class OrderStatusHistorySerializer(serializers.ModelSerializer):
             } 
         return None
 
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = [
+            "id",
+            "payment_method",
+            "payment_status",
+            "total_amount",
+        ]
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only = True)
     status_history = OrderStatusHistorySerializer(many=True, read_only = True)
+    payment = PaymentSerializer(read_only=True)
     order_id = serializers.SerializerMethodField()
     restaurant = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
-        fields = ['order_id', 'restaurant', 'items', 'total_price', 'current_status',
+        fields = ['order_id', 'restaurant', 'items', 'total_price', 'current_status','payment',
                   'delivery_address', 'status_history', 'created_at', 'updated_at']
     
     def get_order_id(self,obj):
